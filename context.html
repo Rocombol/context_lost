@@ -16,7 +16,7 @@
 		}
 		obj.func(); //context is not lost, everything work correct 
 
-		setTimeout(obj.func(), 1000); // context is not lost, but do not work method setTimeout, because not appropriate usege of setTimeout, our delay not 1 second, it works  immediately
+		setTimeout(obj.func(), 1000); // context is not lost, but do not work method setTimeout, because not appropriate usage of setTimeout, our delay not 1 second, it works  immediately
 
 
 		setTimeout(obj.func, 1000);
