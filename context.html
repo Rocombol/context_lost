@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Context</title>
+</head>
+
+<body>
+	<script>
+		var obj = {
+			a: 2,
+			func: function () {
+				console.log(this.a)
+			}
+		}
+		obj.func(); //context is not lost, everything work correct 
+
+		setTimeout(obj.func(), 1000); // context is not lost, but do not work method setTimeout, because not appropriate usege of setTimeout, our delay not 1 second, it works  immediately
+
+
+		setTimeout(obj.func, 1000);
+		//context lost( we do not see our obj), we have only reference on func:  function () {console.log(this.a)}, and because  setTimeout exclusively window method it looks variable a in global scope. If we hahe window.a=5. The console.log print 5. And because we don’t have  it the answer is undefined! Remember  it is not strict mode.
+
+		//        		Finally, the most interesting
+		//        		case, when our first parameter of setTimeout is anonymous function.
+		setTimeout(function () {
+				obj.func()
+			}, 1000)
+			//		Why the context is not lost ? Because of closure.Closure ? Seriously ? Yes!As I said setTimeout is global method so
+			//                 function() {
+			//        				obj.func()
+			//        			}
+			//			first of all try to see obj in own scope.But it’ s he is not there, so interpreter goes to Global scope and find obj object and his method func.
+	</script>
+</body>
+
+</html>
